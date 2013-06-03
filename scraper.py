@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
-from app import db
+from api import db
 from models import Food, Menu, LOCATION_TO_ENUM, MEAL_TO_ENUM
 
 BASE_URL = 'http://services.housing.berkeley.edu/FoodPro/dining/static/'

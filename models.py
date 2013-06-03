@@ -1,4 +1,4 @@
-from app import db
+from api import db
 
 class Food(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
