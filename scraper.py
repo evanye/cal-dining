@@ -4,6 +4,10 @@ from datetime import datetime
 from api import db
 from models import Food, Menu, LOCATION_TO_ENUM, MEAL_TO_ENUM
 
+import sys
+sys.path.append('/usr/lib/python2.7/dist-packages/')
+import lxml
+
 BASE_URL = 'http://services.housing.berkeley.edu/FoodPro/dining/static/'
 MENU_URL = 'todaysentrees.asp'
 MEALS = {'breakfast':3, 'lunch': 5, 'dinner': 7}
@@ -14,7 +18,7 @@ def crawl():
 	# make web request
 	soup = http_get(BASE_URL + MENU_URL)
 	# locate html data
-	html = soup.body.contents[-1].table.tbody.contents[3].td.table.contents
+	html = soup.body.contents[-2].table.tbody.contents[3].td.table.contents
 
 	# stores food that has already been added to the table
 	food_cache = {}
