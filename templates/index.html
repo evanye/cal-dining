@@ -1,8 +1,26 @@
-<html>
-	<head>
-		<title>{{title}}</title>
-	</head>
-	<body>
-		<h1>Hello, {{user.name}}!</h1>
-	</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="span12">
+    <h2>What's on the menu today?</h2>
+    <p>Make a GET request to <code>/menu</code>.</p>
+    <pre>
+{"phase1": {"start": "2013-04-08", "end": "2013-07-07"},
+ "phase2": {"start": "2013-07-09", "end": "2013-08-17"},
+ "adjust": {"start": "2013-08-18", "end": "2013-09-27"}}</pre>
+    <hr>
+    <h2>CCN to Course Mapping</h2>
+    <p>Make a GET request to <code>/courses</code>. (Biology 1A/1AL are not listed, since their CCNs are not public.)</p>
+    <pre>
+{"26301": "COMPUTER SCIENCE 61A S 129 DIS",
+ "57650": "MOLECULAR AND CELL BIOLOGY 64 S 101 DIS",
+ "75775": "PUBLIC HEALTH 198 P 016 GRP",
+ ...
+ "36311": "GEOGRAPHY C55 P 001 LEC"}</pre>
+    <hr>
+    <h2>Enrollment Data</h2>
+    <p>Make a GET request to <code>/{ccn}</code>. (This represents the status at the end of the day specified.)</p>
+    <pre>{"2013-04-08": {"seatlimit": 36, "waitlist": 0, "enrolled": 7}}</pre>
+  </div>
+</div>
+{% endblock %}
