@@ -1,12 +1,6 @@
-from bs4 import BeautifulSoup
-import requests
-from datetime import datetime
+from util import http_get, get_date
 from api import db
 from models import Food, Menu, LOCATION_TO_ENUM, MEAL_TO_ENUM
-
-import sys
-sys.path.append('/usr/lib/python2.7/dist-packages/')
-import lxml
 
 BASE_URL = 'http://services.housing.berkeley.edu/FoodPro/dining/static/'
 MENU_URL = 'todaysentrees.asp'
@@ -101,10 +95,3 @@ def truncate_meal_name(meal_name):
 		meal_name = meal_name[3:]
 		gluten_free = True
 	return meal_name, gluten_free
-
-def http_get(url):
-	resp = requests.get(url)
-	return BeautifulSoup(resp.text, "lxml")
-
-def get_date():
-	return datetime.now().replace(hour = 0,  minute = 0, second = 0, microsecond = 0)
