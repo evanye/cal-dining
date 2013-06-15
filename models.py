@@ -1,8 +1,4 @@
-from flask.ext.sqlalchemy import SQLAlchemy
-from api import app
-
-app.config.from_object('config')
-db = SQLAlchemy(app)
+from api import db
 
 class Food(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -36,7 +32,7 @@ class Menu(db.Model):
 		return "Date: {0}, Located: {1}, Meal: {2}, <{3}>"\
 		.format(self.date, self.location, self.meal, self.food)
 
-def menuToJson(date):
+def menu_to_json(date):
 	json = {}
 	for location in LOCATION_TO_ENUM:
 		json[location] = {}
@@ -49,6 +45,6 @@ def menuToJson(date):
 		meal = ENUM_TO_MEAL[int(entry.meal)]
 		food_info = {'allergens': food.allergens, 'ingredients': food.ingredients, \
 					  'vegan': food.vegan, 'vegetarian': food.vegetarian}
-		json[entry_dict['location']][entry_dict['meal']][entry_dict['food']] = entry_dict
+		json[location][meal][food.name] = food_info
 	return json
 	
