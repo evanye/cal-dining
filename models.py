@@ -31,20 +31,4 @@ class Menu(db.Model):
 	def __repr__(self):
 		return "Date: {0}, Located: {1}, Meal: {2}, <{3}>"\
 		.format(self.date, self.location, self.meal, self.food)
-
-def menu_to_json(date):
-	json = {}
-	for location in LOCATION_TO_ENUM:
-		json[location] = {}
-		for meal in MEAL_TO_ENUM:
-			json[location][meal] = {}
-
-	for entry in Menu.query.filter_by(date = date).all():
-		food = entry.food
-		location = ENUM_TO_LOCATION[int(entry.location)]
-		meal = ENUM_TO_MEAL[int(entry.meal)]
-		food_info = {'allergens': food.allergens, 'ingredients': food.ingredients, \
-					  'vegan': food.vegan, 'vegetarian': food.vegetarian}
-		json[location][meal][food.name] = food_info
-	return json
 	
