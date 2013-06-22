@@ -5,36 +5,47 @@
     <h2>What's on the menu today?</h2>
     <p>Make a GET request to <code>/menu</code>.</p>
     <pre>
-{ "crossroads": {
-        "breakfast": {
-            "Banana Chocolate Chip Muffins": {
-                "allergens": "Wheat, Gluten", 
-                "ingredients": "Cake & Pastry Flour, Sugar, Semi Sweet Chocolate Chips ...", 
-                "vegan": true
-            }, 
-            "Belgian Waffles": { ... }, 
-            ...
-  "foothill": {
-        "dinner": {
-            "Split Pea with Ham Soup": { ... }
-            ...
-        }
+{ "breakfast": {
+    "crossroads": {
+      "Banana Chocolate Chip Muffins": {
+        "allergens": "Wheat, Gluten", 
+        "ingredients": "Cake & Pastry Flour, Sugar, Semi Sweet Chocolate Chips ...", 
+        "vegan": true
+      }, 
+      "Belgian Waffles": { ... }, 
+      ...
+    }
+  "dinner": {
+    "foothill": {
+      "Split Pea with Ham Soup": { ... }
+      ...
+    }
+  }
 }
     </pre>
-    <h3>How about yesterday? Or any other day?</h3>
-    <p>Make a GET request to <code>/menu?date=&lsaquo;string:date&rsaquo;</code>. For example, try <code>/menu?date='2013-06-01'</code>.</p>
+    <h3>How about yesterday? Or only food at crossroads? Or only during lunch?</h3>
+    <p>Make a GET request with params: <code>/menu?date= &lsaquo;string:date&rsaquo; & meal= &lsaquo;string:meal&rsaquo; & location= &lsaquo;string:dining_hall&rsaquo;</code></p>
     <div class="row">
-      <div class="span1"><span class="label label-info">Note</span></div>
-      <p>Use the string pattern "Year-Month-Day"</p>
+      <div class="span1"><span class="label label-info">Date</span></div>
+      <p>Use the string pattern "Year-Month-Day". For example: <code>date=2013-06-01</code>. <span class="label label-important">Note</span> The server only has data starting from June, 2013.</p>
     </div>
     <div class="row">
-      <div class="span1"><span class="label label-important">Note</span></div>
-      <p>This server only has data starting from June, 2013.</p>
+      <div class="span1"><span class="label label-info">Date</span></div>
+      <p>Select a date range with <code>start</code> and <code>end</code>. For example: <code>start=2013-06-01 & end=2013-06-10</code></p>
+    </div>
+    <div class="row">
+      <div class="span1"><span class="label label-info">Meal</span></div>
+      <p>Specify any combination of the three meals: <code>breakfast</code>, <code>lunch</code>, or <code>dinner</code></p>
+    </div>
+    <div class="row">
+      <div class="span1"><span class="label label-info">Location</span></div>
+      <p>Specify any combination of the 3 dining halls: <code>crossroads</code>, <code>foothill</code>, <code>cafe3</code>, or <code>clarkkerr</code></p>
     </div>
     <hr>
     <h2>Food Information API</h2>
-    <p>Make a GET request to <code>/{food}</code>.</p>
-    <pre>{"2013-04-08": {"seatlimit": 36, "waitlist": 0, "enrolled": 7}}</pre>
+    <p>Make a GET request to <code>/food</code>.</p>
+    <pre>
+    </pre>
   </div>
 </div>
 {% endblock %}
