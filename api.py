@@ -1,4 +1,3 @@
-from pprint import pprint
 from flask import Flask, render_template, request, jsonify
 from flask.ext.restful import abort, Api, Resource
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -19,7 +18,6 @@ def index():
 @app.route('/menu', methods = ['GET'])
 def get_menu():
   if request.method == 'GET':
-    print request.args
     params = {
       'date': request.args.get('date', get_recent_menu_date().strftime("%Y-%m-%d")),
       'meal': request.args.getlist('meal'),
@@ -33,8 +31,7 @@ def get_menu():
     if len(params['location']) == 0:
       params['location'] =  ['crossroads', 'cafe3', 'foothill', 'clarkkerr']
 
-    menu = menu_to_json(params)
-    if len(menu) > 0:
-      return jsonify(menu)
-    else:
-      abort(404, message='No menus for {0}'.format(date))
+    try:
+      return jsonify(menu_to_json(params))
+    except Exception:
+      abort(400, message='Sorry, your request could not be parsed. Check your params again for typos!')

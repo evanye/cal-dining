@@ -1,5 +1,5 @@
-from util import http_get, get_date
 from api import db
+from util import http_get, get_date
 from models import Food, Menu, LOCATION_TO_ENUM, MEAL_TO_ENUM
 
 BASE_URL = 'http://services.housing.berkeley.edu/FoodPro/dining/static/'
