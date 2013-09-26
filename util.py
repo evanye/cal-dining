@@ -1,7 +1,3 @@
-import sys
-if 'run.fcgi' not in sys.argv[0]:
-  sys.path.append('/usr/lib/python2.6/dist-packages/')
-  import lxml
 from bs4 import BeautifulSoup
 import requests
 from sqlalchemy import and_

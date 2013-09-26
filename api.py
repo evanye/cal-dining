@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask.ext.restful import abort, Api, Resource
+from flask.ext.restful import abort, Api
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -35,3 +35,4 @@ def get_menu():
       return jsonify(menu_to_json(params))
     except Exception:
       abort(400, message='Sorry, your request could not be parsed. Check your params again for typos!')
+
