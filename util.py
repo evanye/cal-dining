@@ -52,9 +52,10 @@ def menu_to_json(params):
   query = query.filter(Menu.meal.in_([MEAL_TO_ENUM[meal] for meal in params['meal']]))
   query = query.filter(Menu.location.in_([LOCATION_TO_ENUM[location] for location in params['location']]))
 
-
+  # lazy way of handling n+1 joins, works until Food gets super large
+  all_food = Food.query.all()
   for entry in query.all():
-    food = entry.food
+    food = all_food[entry.food_id - 1]
     date = entry.date.strftime("%Y-%m-%d")
     location = ENUM_TO_LOCATION[int(entry.location)]
     meal = ENUM_TO_MEAL[int(entry.meal)]
