@@ -12,7 +12,7 @@ var mealFromTime = function() {
   var breakfastTime = new Date(); breakfastTime.setHours(10, 1);
   var lunchTime = new Date(); lunchTime.setHours(14, 1);
   var dinnerTime = new Date(); dinnerTime.setHours(21, 1);
-  // return 'lunch';
+
   if(breakfastTime < currentTime && currentTime < lunchTime)
     return 'lunch';
   else if(currentTime < dinnerTime)
@@ -53,14 +53,15 @@ var App = React.createClass({
     return count;
   },
   setActiveItem: function(item) {
-    if(item in this.state.active) {
+    if ($.inArray(item, MEALS) !== -1) { // setting the meal
+      this.state.meal = item;
+      this.componentDidMount();
+    } else if(item in this.state.active) { // setting the active menu
       if(this.state.active[item] === false || this.countActive() > 1) {
         var newActive = this.state.active;
         newActive[item] = !newActive[item];
         this.setState({active: newActive});
       }
-    } else {
-      this.setState({meal: item});
     }
   },
   componentDidMount: function() {
@@ -158,16 +159,17 @@ var NavbarItem = React.createClass({
 });
 
 var Timepicker = React.createClass({
-  selectMeal: function(event) {
+  handleClick: function(event) {
     event.preventDefault();
-    // this.props.onSelect(event.target);
+    this.props.onSelect($(event.target).text());
   },
-
   render: function() {
     var meals = [];
     MEALS.forEach(function(meal) {
-      if(this.props.meal !== meal)
-        meals.push(<li key={meal}><a onClick={this.selectMeal}>{meal}</a></li>);
+      if(this.props.meal !== meal){
+        console.log(meal);
+        meals.push(<li key={meal}><a onClick={this.handleClick}>{meal}</a></li>);
+      }
     }.bind(this));
     return  <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">
@@ -200,7 +202,7 @@ var Menu = React.createClass({
         </li>
       );
     }
-    console.log(this.props.entries)
+
     return <div className="entree">
               <h3 className="title">{LOCATION_TO_NAME[this.props.key]}</h3>
               <ul className="list-group">
