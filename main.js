@@ -167,7 +167,6 @@ var Timepicker = React.createClass({
     var meals = [];
     MEALS.forEach(function(meal) {
       if(this.props.meal !== meal){
-        console.log(meal);
         meals.push(<li key={meal}><a onClick={this.handleClick}>{meal}</a></li>);
       }
     }.bind(this));
