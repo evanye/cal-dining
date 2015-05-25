@@ -24,7 +24,7 @@ var mealFromTime = function() {
 var App = React.createClass({
   getDefaultProps: function() {
     return {
-      api: 'http://www.ocf.berkeley.edu/~eye/cal-dining/menu'
+      api: 'https://www.ocf.berkeley.edu/~eye/cal-dining/menu'
     }
   },
   getInitialState: function() {

@@ -24,6 +24,8 @@ def crawl():
 
     for DINING_COMMON in DINING_COMMONS:
       dc_index = DINING_COMMONS[DINING_COMMON]
+      if len(meal_data.contents) <= dc_index:
+        break
       meal_dc_data = meal_data.contents[dc_index]
 
       for entry in meal_dc_data.find_all('a'):
