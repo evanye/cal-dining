@@ -1,2 +1,3 @@
+source /home/e/ey/eye/ENV/bin/activate
 cd /home/e/ey/eye/public_html/cal-dining/
-/usr/bin/env python2.6 -c "import scraper; scraper.crawl()"
+python -c "import scraper; scraper.crawl()"
