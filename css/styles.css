@@ -1,0 +1,25 @@
+.title {
+    font-family: Raleway, Helvetica, sans-serif;
+}
+
+body {
+    /*background-color: #ededed;*/
+}
+
+.entree {
+    text-align: center;
+}
+
+p.vegetarian {
+    color: green;
+}
+
+p.vegan {
+    color: #A52A2A;
+}
+
+.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
